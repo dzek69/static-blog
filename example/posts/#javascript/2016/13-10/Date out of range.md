@@ -1,0 +1,1 @@
+This file will be rejected because it doesn't contain valid date
