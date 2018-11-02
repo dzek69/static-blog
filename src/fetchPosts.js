@@ -131,12 +131,20 @@ class Files {
     }
 }
 
-const fetchPosts = (dir) => new Promise((resolve) => {
+const fetchPosts = (dir) => new Promise((resolve, reject) => {
     const result = new Files();
 
     klaw(dir)
         .on("data", result.push)
-        .on("error", result.push)
+        .on("error", (e) => {
+            if (e.code === "ENOENT") {
+                reject(new Error(
+                    "Cannot read specified posts directory. Verify if path is correct and read permissions are set",
+                ));
+                return;
+            }
+            reject(e);
+        })
         .on("end", () => resolve(result));
 });
 

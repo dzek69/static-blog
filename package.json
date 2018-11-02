@@ -1,7 +1,10 @@
 {
   "name": "@dzek69/static-blog",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "src/index.js",
+  "bin": {
+    "static-blog": "dist/index.js"
+  },
   "repository": "https://github.com/dzek69/static-blog.git",
   "author": "Jacek Nowacki @dzek69 <git-public@dzek.eu>",
   "license": "MIT",
@@ -15,6 +18,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "commander": "^2.19.0",
     "fs-extra": "^7.0.0",
     "highlight.js": "^9.13.1",
     "klaw": "^3.0.0",
