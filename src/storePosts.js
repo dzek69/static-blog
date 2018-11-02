@@ -6,7 +6,7 @@ import { join, sep } from "path";
 
 const generateLinkedTags = tags => {
     const result = tags.reduce((previous, current) => {
-        return previous + `<li><a href="/tag/${encodeURIComponent(current)}.html">#${escapeHtml(current)}</a></li>`;
+        return previous + `<li><a href="/tag/${encodeURIComponent(current)}.html">#${escapeHtml(current)}</a>`;
     }, "");
 
     return result ? `<ul class="post-tags-links">${result}</ul>` : "";

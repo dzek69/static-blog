@@ -20,6 +20,8 @@
 
 - `%index_tags%` - `<li>` elements with list of tags links collected from all posts, wrapped with
                    `<ul class="index-tags">`
+- `%index_all%` - `<li>` elements with list of links for all posts, sorted by date decreasing, wrapped with
+                   `<ul class="index-list">`
 - `%blog_title%` - your blog title used on homepage, ie: `My personal blog`
 - `%blog_tags%` - title used on filter by tags list, should contain sub-variable: %tag%, ie:
                   `Posts tagged with %tag% - My personal blog` 
