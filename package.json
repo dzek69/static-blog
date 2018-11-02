@@ -1,6 +1,6 @@
 {
-  "name": "static-blog",
-  "version": "1.0.03",
+  "name": "@dzek69/static-blog",
+  "version": "1.0.0",
   "main": "src/index.js",
   "repository": "https://github.com/dzek69/static-blog.git",
   "author": "Jacek Nowacki @dzek69 <git-public@dzek.eu>",
