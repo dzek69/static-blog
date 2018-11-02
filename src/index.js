@@ -43,7 +43,7 @@ const CWD = process.cwd();
 const POSTS_DIR = args.postsDir;
 const STATIC_DIR = args.staticDir || path.join(__dirname, "..", "example/static");
 const TEMPLATES_DIR = args.templatesDir || path.join(__dirname, "..", "example/templates");
-const TARGET_DIR = args.templatesDir || path.join(CWD, "output");
+const TARGET_DIR = args.outputDir || path.join(CWD, "output");
 
 (async () => { // eslint-disable-line max-statements
     try {
