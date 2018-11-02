@@ -1,6 +1,8 @@
 import fs from "fs-extra";
 import { join } from "path";
 
+import Replacer from "./replacer";
+
 const cache = {};
 
 const prepareTemplate = async (dir, file) => {
@@ -27,17 +29,9 @@ const prepareTemplate = async (dir, file) => {
     });
 };
 
-const createReplacer = (contents) => (replaceData) => {
-    const regexp = /%[a-zA-Z]+%/g;
-    return contents.replace(regexp, (key) => {
-        const fixedKey = key.substr(1, key.length - 2); // eslint-disable-line no-magic-numbers
-        return replaceData[fixedKey] || "";
-    });
-};
-
 const prepareTemplates = async (dir) => {
-    const home = createReplacer(await prepareTemplate(dir, "home.html"));
-    const post = createReplacer(await prepareTemplate(dir, "post.html"));
+    const home = new Replacer(await prepareTemplate(dir, "home.html"));
+    const post = new Replacer(await prepareTemplate(dir, "post.html"));
 
     return {
         home, post,

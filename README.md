@@ -2,6 +2,8 @@
 
 Static blog generator from Markdown files.
 
+WIP.
+
 ## Features
 
 - tags

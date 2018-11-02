@@ -100,7 +100,7 @@ class Files {
         if (!match) {
             return [];
         }
-        return [...new Set(match.map(s => s.toLowerCase()))];
+        return [...new Set(match.map(s => s.toLowerCase().substr(1)))];
     }
 
     static getDate(file) {

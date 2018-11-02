@@ -9,8 +9,6 @@ import copyStatic from "./copyStatic";
 import prepareTemplates from "./prepareTemplates";
 import storePosts from "./storePosts";
 
-const LANG = "pl";
-
 console.info("[static-blog]");
 
 program
@@ -45,6 +43,8 @@ const STATIC_DIR = args.staticDir || path.join(__dirname, "..", "example/static"
 const TEMPLATES_DIR = args.templatesDir || path.join(__dirname, "..", "example/templates");
 const TARGET_DIR = args.outputDir || path.join(CWD, "output");
 
+const LANG = "en";
+
 (async () => { // eslint-disable-line max-statements
     try {
         console.info("Fetching posts");
@@ -52,8 +52,8 @@ const TARGET_DIR = args.outputDir || path.join(CWD, "output");
         console.info(`Found ${posts.results.length} correct posts`);
         if (posts.errors.length) {
             console.warn(`Warning: These ${posts.errors.length} files will be skipped:`);
-            posts.errors.forEach(post => {
-                console.warn(post.message);
+            posts.errors.forEach(error => {
+                console.warn(error.message);
             });
         }
         console.info("Preparing directory structure");
@@ -63,7 +63,15 @@ const TARGET_DIR = args.outputDir || path.join(CWD, "output");
         console.info("Parsing templates");
         const templates = await prepareTemplates(TEMPLATES_DIR);
         console.info("Generating posts");
-        await storePosts(TARGET_DIR, LANG, templates.post, posts.results);
+
+        const post = templates.post.replace({
+            lang: LANG,
+        });
+        // const home = templates.home.replace({
+        //     lang: LANG,
+        // });
+
+        await storePosts(TARGET_DIR, post, posts.results);
         console.info("Done!");
     }
     catch (e) {
