@@ -4,8 +4,8 @@
       "env",
       {
         "targets": {
-          "browsers": [
-            "last 2 versions", "> 5%", "ie > 9"
+          "node": [
+            "8"
           ]
         }
       }
