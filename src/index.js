@@ -2,6 +2,7 @@ import fetchPosts from "./fetchPosts";
 import prepareDirs from "./prepareDirs";
 import copyStatic from "./copyStatic";
 import prepareTemplates from "./prepareTemplates";
+import storePosts from "./storePosts";
 
 const POSTS_DIR = "example/posts";
 const STATIC_DIR = "example/static";
@@ -15,10 +16,7 @@ const LANG = "pl";
         await prepareDirs(TARGET_DIR, posts.results);
         await copyStatic(STATIC_DIR, TARGET_DIR);
         const templates = await prepareTemplates(TEMPLATES_DIR);
-
-        console.log(templates.home({
-            lang: LANG,
-        }));
+        await storePosts(TARGET_DIR, LANG, templates.post, posts.results);
     }
     catch (e) {
         console.error("There was a problem during generating your blog.");

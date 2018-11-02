@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "fs-extra": "^7.0.0",
-    "klaw": "^3.0.0"
+    "highlight.js": "^9.13.1",
+    "klaw": "^3.0.0",
+    "markdown-it": "^8.4.2"
   },
   "devDependencies": {
     "@dzek69/eslint-config-base": "^0.0.1",
