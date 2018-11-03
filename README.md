@@ -6,9 +6,12 @@ WIP.
 
 ## Features
 
-- tags
-
 @TODO
+
+## TODO
+
+- fix possible accidental xss
+- docs
 
 ## License
 

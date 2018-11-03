@@ -6,8 +6,10 @@ import main from "./index";
 
 console.info("[static-blog]");
 
+import pkg from "../package.json";
+
 program
-    .version("1.0.0", "-v, --version")
+    .version(pkg.version, "-v, --version")
     .option("-p, --posts-dir <dir>", "Set posts directory path")
     .option("-s, --static-dir [dir]", "Set static files directory path")
     .option("-t, --templates-dir [dir]", "Set templates directory path")
