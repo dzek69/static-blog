@@ -3,16 +3,16 @@
 import program from "commander";
 import path from "path";
 
-import fetchPosts from "./fetchPosts";
-import prepareDirs from "./prepareDirs";
-import copyStatic from "./copyStatic";
-import prepareTemplates from "./prepareTemplates";
-import storePosts from "./storePosts";
-import storeListPages from "./storeListPages";
+import fetchPosts from "./utils/fetchPosts";
+import prepareDirs from "./utils/prepareDirs";
+import copyStatic from "./utils/copyStatic";
+import prepareTemplates from "./utils/prepareTemplates";
+import storePosts from "./utils/storePosts";
+import storeListPages from "./utils/storeListPages";
 
-import { sortByDate, groupByTags } from "./sorters";
+import { sortByDate, groupByTags } from "./utils/sorters";
 
-import { renderAllTags } from "./rendering";
+import { renderAllTags } from "./utils/rendering";
 
 console.info("[static-blog]");
 
