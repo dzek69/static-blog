@@ -13,7 +13,7 @@ const generateLinkedTags = tags => {
 };
 
 const storePosts = (targetDir, postTemplate, posts) => {
-    return posts.map(async (post) => {
+    return Promise.all(posts.map(async (post) => {
         const mdContents = String(await fs.readFile(post.path));
         const md = new Markdown({
             html: false,
@@ -45,12 +45,12 @@ const storePosts = (targetDir, postTemplate, posts) => {
             tags: post.tags.map(s => "#" + s).join(", "),
             tags_links: generateLinkedTags(post.tags),
             document_title: post.title,
-        }).get(); // @todo verify why it's not caught if something breaks here
+        }).get();
         /* eslint-enable camelcase */
 
         const targetPath = join(targetDir, post.date.replace(/-/g, sep), post.title + ".html");
         await fs.writeFile(targetPath, fileHtml);
-    });
+    }));
 };
 
 export default storePosts;
