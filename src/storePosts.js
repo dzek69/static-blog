@@ -1,16 +1,9 @@
 import fs from "fs-extra";
 import Markdown from "markdown-it";
 import highlight from "highlight.js";
-import escapeHtml from "escape-html";
 import { join, sep } from "path";
 
-const generateLinkedTags = tags => {
-    const result = tags.reduce((previous, current) => {
-        return previous + `<li><a href="/tag/${encodeURIComponent(current)}.html">#${escapeHtml(current)}</a>`;
-    }, "");
-
-    return result ? `<ul class="post-tags-links">${result}</ul>` : "";
-};
+import { renderPostTags } from "./rendering";
 
 const storePosts = (targetDir, postTemplate, posts) => {
     return Promise.all(posts.map(async (post) => {
@@ -43,8 +36,8 @@ const storePosts = (targetDir, postTemplate, posts) => {
             title: post.title,
             date: post.date,
             tags: post.tags.map(s => "#" + s).join(", "),
-            tags_links: generateLinkedTags(post.tags),
-            document_title: post.title,
+            tags_links: renderPostTags(post.tags),
+            blog_title_current: post.title,
         }).get();
         /* eslint-enable camelcase */
 

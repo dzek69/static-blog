@@ -8,6 +8,11 @@ import prepareDirs from "./prepareDirs";
 import copyStatic from "./copyStatic";
 import prepareTemplates from "./prepareTemplates";
 import storePosts from "./storePosts";
+import storeListPages from "./storeListPages";
+
+import { sortByDate, groupByTags } from "./sorters";
+
+import { renderAllTags } from "./rendering";
 
 console.info("[static-blog]");
 
@@ -44,6 +49,8 @@ const TEMPLATES_DIR = args.templatesDir || path.join(__dirname, "..", "example/t
 const TARGET_DIR = args.outputDir || path.join(CWD, "output");
 
 const LANG = "en";
+const BLOG_TITLE = "My personal blog";
+const BLOG_TITLE_TAG = "Posts tagged with %tag%";
 
 (async () => { // eslint-disable-line max-statements
     try {
@@ -64,14 +71,31 @@ const LANG = "en";
         const templates = await prepareTemplates(TEMPLATES_DIR);
         console.info("Generating posts");
 
-        const post = templates.post.replace({
-            lang: LANG,
-        });
-        // const home = templates.home.replace({
-        //     lang: LANG,
-        // });
+        const listByDate = sortByDate(posts.results);
+        const listByTags = groupByTags(posts.results);
+        const allTags = renderAllTags(listByTags);
 
+        /* eslint-disable camelcase */
+        const post = templates.post.replace({
+            all_tags: allTags,
+            lang: LANG,
+            blog_title: BLOG_TITLE,
+        });
+
+        const home = templates.home.replace({
+            all_tags: allTags,
+            lang: LANG,
+            blog_title: BLOG_TITLE,
+        });
+        /* eslint-enable camelcase */
+
+        console.info("Storing posts");
         await storePosts(TARGET_DIR, post, posts.results);
+        console.info("Storing homepage and tags");
+        await storeListPages(TARGET_DIR, home, listByDate, listByTags, {
+            title: BLOG_TITLE,
+            titleTag: BLOG_TITLE_TAG,
+        });
         console.info("Done!");
     }
     catch (e) {
