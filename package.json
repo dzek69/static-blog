@@ -1,9 +1,9 @@
 {
   "name": "@dzek69/static-blog",
-  "version": "1.0.3-unreleased.1",
+  "version": "1.0.3",
   "main": "src/index.js",
   "bin": {
-    "static-blog": "dist/index.js"
+    "static-blog": "dist/cli.js"
   },
   "repository": "https://github.com/dzek69/static-blog.git",
   "author": "Jacek Nowacki @dzek69 <git-public@dzek.eu>",
