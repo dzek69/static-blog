@@ -1,6 +1,6 @@
 {
   "name": "@dzek69/static-blog",
-  "version": "1.0.3-beta.2",
+  "version": "1.0.3",
   "main": "src/index.js",
   "bin": {
     "static-blog": "dist/cli.js"
