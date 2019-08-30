@@ -1,7 +1,7 @@
 /.idea/
 /docs/
 /dist/
-/output/
 /node_modules/
 
 /*.tgz
+*.log
