@@ -23,7 +23,7 @@
     "fs-extra": "^7.0.1",
     "highlight.js": "^9.13.1",
     "klaw": "^3.0.0",
-    "markdown-it": "^8.4.2"
+    "markdown-it": "^12.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
