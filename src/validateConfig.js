@@ -31,6 +31,7 @@ const validateConfig = config => {
         lang: config.lang || "en",
         blogTitle: config.blogTitle || "",
         blogTitleTag: config.blogTitleTag || "",
+        siteUrl: config.siteUrl,
         verbose: config.verbose || false,
     };
 };

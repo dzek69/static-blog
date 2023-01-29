@@ -4,6 +4,7 @@ import copyStatic from "./utils/copyStatic";
 import prepareTemplates from "./utils/prepareTemplates";
 import storePosts from "./utils/storePosts";
 import storeListPages from "./utils/storeListPages";
+import { generateRss } from "./utils/generateRss";
 
 import { sortByDate, groupByTags } from "./utils/sorters";
 
@@ -65,13 +66,25 @@ const jobs = [
     },
     async ({ outputDir }, { info }, { posts, post }) => {
         info("Storing posts");
-        await storePosts(outputDir, post, posts.results);
+        const storedPostsData = await storePosts(outputDir, post, posts.results);
+        return {
+            storedPosts: storedPostsData,
+        };
     },
-    async ({ outputDir, blogTitle, blogTitleTag }, { info }, { home, listByDate, listByTags }) => {
+    async ({ outputDir, blogTitle, siteUrl }, { info }, { storedPosts }) => {
+        info("Generating RSS");
+        const rssUrl = await generateRss({ outputDir, blogTitle, siteUrl }, { info }, { storedPosts });
+
+        return {
+            rss: rssUrl,
+        };
+    },
+    async ({ outputDir, blogTitle, blogTitleTag }, { info }, { home, listByDate, listByTags, rss }) => {
         info("Storing homepage and tags");
         await storeListPages(outputDir, home, listByDate, listByTags, {
             title: blogTitle,
             titleTag: blogTitleTag,
+            rss: rss ? `<link rel="alternate" type="application/rss+xml" href="${rss}" />` : "",
         });
     },
 ];

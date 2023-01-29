@@ -10,6 +10,7 @@ const storeListPages = async (targetDir, homeTemplate, listByDate, listByTags, t
         const fileHtml = listGenerator.replace({
             all_posts: renderAllPosts(listByDate),
             blog_title_current: titles.title,
+            rss: titles.rss,
         }).get();
         /* eslint-enable camelcase */
 

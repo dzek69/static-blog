@@ -4,11 +4,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 > Warning: Some breaking changes happend on 1.x, this won't happen again!
-> From 1.0.4, all breaking changes will increase major version. 
+> From 1.0.4, all breaking changes will increase major version.
 
-## [UNRELEASED]
+## [1.1.0] - 2023-o1-29
 ### Added
-- proper changelog
+- very basic RSS support
+### Dev
+- added proper changelog
 
 ## [1.0.4]
 ### Fixed

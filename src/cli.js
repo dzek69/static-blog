@@ -18,6 +18,7 @@ program
     .option("--blog-title [title]", "Set blog title (see docs for more info)")
     .option("--blog-title-tag [title]", "Set blog title (see docs for more info)")
     .option("--blog-lang [lang=en]", "Set blog language (see docs for more info)")
+    .option("--site-url [url]", "Set site url (optional, required to generate rss)")
     .option("--verbose", "Set debug mode/more verbose errors");
 
 const args = program.parse(process.argv);

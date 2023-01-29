@@ -43,6 +43,11 @@ const storePosts = (targetDir, postTemplate, posts) => {
 
         const targetPath = join(targetDir, post.date.replace(/-/g, sep), post.title + ".html");
         await fs.writeFile(targetPath, fileHtml);
+
+        return {
+            ...post,
+            url: targetPath.split("/").map(v => encodeURIComponent(v)).join("/"),
+        };
     }));
 };
 
