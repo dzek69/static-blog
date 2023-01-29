@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 > Warning: Some breaking changes happend on 1.x, this won't happen again!
 > From 1.0.4, all breaking changes will increase major version.
 
-## [1.1.0] - 2023-o1-29
+## [1.1.1] - 2023-01-29
+### Fixed
+- invalid urls in rss
+
+## [1.1.0] - 2023-01-29
 ### Added
 - very basic RSS support
 ### Dev

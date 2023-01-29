@@ -41,12 +41,13 @@ const storePosts = (targetDir, postTemplate, posts) => {
         }).get();
         /* eslint-enable camelcase */
 
-        const targetPath = join(targetDir, post.date.replace(/-/g, sep), post.title + ".html");
+        const filePath = join(post.date.replace(/-/g, sep), post.title + ".html");
+        const targetPath = join(targetDir, filePath);
         await fs.writeFile(targetPath, fileHtml);
 
         return {
             ...post,
-            url: targetPath.split("/").map(v => encodeURIComponent(v)).join("/"),
+            url: filePath.split("/").map(v => encodeURIComponent(v)).join("/"),
         };
     }));
 };
