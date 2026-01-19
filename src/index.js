@@ -79,13 +79,16 @@ const jobs = [
             rss: rssUrl,
         };
     },
-    async ({ outputDir, blogTitle, blogTitleTag }, { info }, { home, listByDate, listByTags, rss }) => {
+    async ({ outputDir, blogTitle, blogTitleTag }, { info }, { post, posts, home, listByDate, listByTags, rss }) => {
         info("Storing homepage and tags");
+
+        const fullRss = rss ? `<link rel="alternate" type="application/rss+xml" href="${rss}" />` : "";
         await storeListPages(outputDir, home, listByDate, listByTags, {
             title: blogTitle,
             titleTag: blogTitleTag,
-            rss: rss ? `<link rel="alternate" type="application/rss+xml" href="${rss}" />` : "",
+            rss: fullRss,
         });
+        await storePosts(outputDir, post, posts.results, fullRss)
     },
 ];
 

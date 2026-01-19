@@ -5,7 +5,7 @@ import { join, sep } from "path";
 
 import { renderPostTags } from "./rendering";
 
-const storePosts = (targetDir, postTemplate, posts) => {
+const storePosts = (targetDir, postTemplate, posts, fullRss) => {
     return Promise.all(posts.map(async (post) => {
         const mdContents = String(await fs.readFile(post.path));
         const md = new Markdown({
@@ -38,6 +38,7 @@ const storePosts = (targetDir, postTemplate, posts) => {
             tags: post.tags.map(s => "#" + s).join(", "),
             tags_links: renderPostTags(post.tags),
             blog_title_current: post.title,
+            rss: fullRss,
         }).get();
         /* eslint-enable camelcase */
 
@@ -47,6 +48,7 @@ const storePosts = (targetDir, postTemplate, posts) => {
 
         return {
             ...post,
+            targetPath,
             url: filePath.split("/").map(v => encodeURIComponent(v)).join("/"),
         };
     }));
